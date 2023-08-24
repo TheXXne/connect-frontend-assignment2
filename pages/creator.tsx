@@ -8,6 +8,7 @@ import styles from '/styles/Creator.module.css';
 import {LocationIcon, ViewIcon, LikeIcon, AvatarShowIcon, Button} from '@closet-design-system/core-connect';
 import Header from '../src/components/Header';
 import SearchBox from "../src/components/SearchBox";
+import SortingBox from "../src/components/SortingBox";
 
 const Creator: NextPage = ({ creatorList, followerList }: any) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -20,7 +21,7 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
       <Header/>
       <div className={styles.creatorDiv}>
         <SearchBox/>
-        <div>SortingBar</div>
+        <SortingBox/>
         <div>tab</div>
         <div>creatos number</div>
         {creatorList.creators.map((creator: any, index: any) => {
