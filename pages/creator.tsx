@@ -4,6 +4,9 @@ import axios from 'axios';
 import {useState} from "react";
 import ModalBasic from '../src/components/ModalBasic';
 import {NATIONAL_CODE} from '../src/constant/nationalCode';
+import '../styles/Creator.module.css';
+import {LocationIcon, ViewIcon, LikeIcon, AvatarShowIcon, Button} from '@closet-design-system/core-connect';
+import Header from '../src/components/Header';
 
 const Creator: NextPage = ({ creatorList, followerList }: any) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -13,55 +16,74 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
 
   return (
     <div>
+      <Header/>
       <div>
         {creatorList.creators.map((creator: any, index: any) => {
           return (
               <div>
-                <div key={index}>
-                  <Image
-                      src={creator.photo}
-                      alt="Not Set"
-                      width="286"
-                      height="380"
-                      objectFit="cover"
-                      objectPosition="center"
-                  />
-                  <p>creator:{creator.userId}</p>
-                  <p>creator:{creator.creator}</p>
-                  <p>occupations: {
-                    creator.occupations.map((occupation: any, index: any) => {
-                      return (
-                          <div key={index}>{occupation.name}</div>
-                      )
-                    })
-                  }
-                  </p>
-                  <p>country: {creator.country}</p>
+                <div>
                   <div>
-                    introduction : {creator.introduction}
+                    <div>
+                      <Image
+                          src={creator.photo}
+                          alt="Not Set"
+                          width="71"
+                          height="95"
+                          objectFit="cover"
+                          objectPosition="center"
+                      />
+                    </div>
+                    <div>
+                      <p>{creator.creator}</p>
+                      <div>{
+                        creator.occupations.map((occupation: any, index: any) => {
+                          return (
+                              <span key={index}>{occupation.name} ,</span>
+                          )
+                        })
+                      }
+                      </div>
+                      <div>
+                        <LocationIcon/><p>{creator.country}</p>
+                      </div>
+                      <div>
+                        {creator.introduction}
+                      </div>
+                      <div>
+                        <Button size="xs" shape="quiet">Follow</Button>
+                        <div>
+                          <ViewIcon/><p>{creator.viewCount}</p>
+                        </div>
+                        <div>
+                          <LikeIcon/><p>{creator.likeCount}</p>
+                        </div>
+                        <div>
+                          <AvatarShowIcon/>
+                          <p onClick={showModal}>
+                            {creator.followerCount}
+                            {modalOpen && <ModalBasic setModalOpen={setModalOpen} key={index} value={creator.userId}/>}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <p>viewCount: {creator.viewCount}</p>
-                  <p>likeCount: {creator.likeCount}</p>
-                  <p onClick={showModal}>followerCount: {creator.followerCount}
-                    {modalOpen && <ModalBasic setModalOpen={setModalOpen} userId={creator.userId}/>}
-                  </p>
-                  <p>isFollowing: {creator.isFollowing}</p>
-                  <span>items</span>
-                  {creator.items.map((item: any, index: any) => {
-                        return (
-                            <div key={index}>
-                              <div>item name: {item.name}</div>
-                              <Image
-                                  src={item.imagePath}
-                                  alt="Not Set"
-                                  width="143"
-                                  height="190"
-                                  objectFit="cover"
-                                  objectPosition="center"
-                              />
-                            </div>
-                        )
-                  })}
+                  <div>
+                    {creator.items.map((item: any, index: any) => {
+                      return (
+                          <div key={index}>
+                            <div>item name: {item.name}</div>
+                            <Image
+                                src={item.imagePath}
+                                alt="Not Set"
+                                width="143"
+                                height="190"
+                                objectFit="cover"
+                                objectPosition="center"
+                            />
+                          </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
           )
@@ -81,12 +103,20 @@ export async function getServerSideProps(context: any) {
   const followerList = followerResponse.data.followerList;
 
   creatorList.creators.map((creator: any, index: any) => {
-    if( creator.introduction.ops?.length ) {
+    if (creator.introduction.ops?.length) {
       creator.introduction = creator.introduction.ops[0].insert;
     } else {
       creator.introduction = "";
     }
-  })
+  });
+
+  creatorList.creators.map((creator: any, index: any) => {
+    NATIONAL_CODE.map((nation: any, index: any) => {
+      if (creator.country === nation.value) {
+        creator.country = nation.label;
+      }
+    });
+  });
 
   return {
     props: {
