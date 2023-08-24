@@ -4,7 +4,7 @@ import {NextPage} from "next";
 
 function ModalBasic({ setModalOpen, id, title, content, writer, userId }: any): JSX.Element {
     console.log("MODAL!!!!!!!!!!!!!!!!!!!!!MODAL", userId)
-    const followerResponse = await axios.get('http://localhost:3000/api/follower',
+    const followerResponse = axios.get('http://localhost:3000/api/follower',
         { params: { userId: 354 }}
     );
     // 모달 끄기

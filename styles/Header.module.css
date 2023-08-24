@@ -1,0 +1,55 @@
+.nav {
+    padding: 0px 24px;
+    height: 64px;
+    background-color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lSideHeader {
+    display: flex;
+    justify-content: center;
+    font-family: 'AvenirNextLTPro',sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #96969F;
+}
+
+.connectLogo {
+    margin-right: 32px;
+}
+
+.lSideHeader a {
+    padding: 0px 8px;
+    margin-left: 20px;
+}
+
+.navStore:hover,
+.navGallery:hover,
+.navCreator:hover,
+.navApp:hover,
+.navSupport:hover {
+    color: #66F0FF;
+}
+
+.navApp, .navSupport{
+    display: flex;
+    justify-content: center;
+}
+
+.rSideHeader {
+    display: flex;
+    justify-content: center;
+    display: inline-flex;
+    color: #96969F;
+}
+
+.rSideHeader * {
+    margin-left: 10px;
+}
+
+.navUpload {
+    margin: 0px;
+    font-size: 10px;
+}
