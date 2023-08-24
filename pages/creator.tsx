@@ -4,9 +4,10 @@ import axios from 'axios';
 import {useState} from "react";
 import ModalBasic from '../src/components/ModalBasic';
 import {NATIONAL_CODE} from '../src/constant/nationalCode';
-import '../styles/Creator.module.css';
+import styles from '/styles/Creator.module.css';
 import {LocationIcon, ViewIcon, LikeIcon, AvatarShowIcon, Button} from '@closet-design-system/core-connect';
 import Header from '../src/components/Header';
+import SearchBox from "../src/components/SearchBox";
 
 const Creator: NextPage = ({ creatorList, followerList }: any) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -17,7 +18,11 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
   return (
     <div>
       <Header/>
-      <div>
+      <div className={styles.creatorDiv}>
+        <SearchBox/>
+        <div>SortingBar</div>
+        <div>tab</div>
+        <div>creatos number</div>
         {creatorList.creators.map((creator: any, index: any) => {
           return (
               <div>
