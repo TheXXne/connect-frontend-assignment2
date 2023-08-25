@@ -42,7 +42,7 @@
     -webkit-text-decoration: none;
     text-decoration: none;
     color: #BFBFC6;
-    font-family: inherit;
+    font-family: 'AvenirNextLTPro',sans-serif;
     text-transform: none;
     font-size: 8px;
     line-height: 16px;
@@ -73,7 +73,7 @@
     -webkit-text-decoration: none;
     text-decoration: none;
     color: #FFFFFF;
-    font-family: inherit;
+    font-family: 'AvenirNextLTPro',sans-serif;
     text-transform: none;
     font-size: 15px;
     line-height: 20px;

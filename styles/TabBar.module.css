@@ -1,0 +1,118 @@
+.outerDiv {
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.recentSpan {
+    margin-right: 18px;
+}
+
+.recentText {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    color: inherit;
+    font-family: inherit;
+    font-style: normal;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-family: 'AvenirNextLTPro',sans-serif;
+    color: #FFFFFF;
+    text-transform: none;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 600;
+    letter-spacing: normal;
+}
+
+.allTimeSpan {
+    cursor: pointer;
+}
+
+.allTimeText {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    font-style: normal;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-family: 'AvenirNextLTPro',sans-serif;
+    color: #5F5F68;
+    text-transform: none;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 600;
+    letter-spacing: normal;
+}
+
+.rightSideDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.sortDiv {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.infoDiv {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.infoBtn {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    background: none;
+    line-height: 0;
+    box-shadow: none;
+    cursor: pointer;
+    outline: none;
+    color: #777783;
+}
+
+.sortText {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    color: inherit;
+    font-family: inherit;
+    font-style: normal;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: inherit;
+    font-family: inherit;
+    text-transform: none;
+    font-family: 'AvenirNextLTPro',sans-serif;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: normal;
+}
+
+.viewOuterDiv {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    display: inline-flex;
+    flex-direction: column;
+    width: 160px;
+    font-size: 14px;
+    min-width: 160px;
+    position: relative;
+}
+
+.viewInnerDiv {
+    font-size: 14px;
+}
