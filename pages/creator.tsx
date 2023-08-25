@@ -9,6 +9,7 @@ import {LocationIcon, ViewIcon, LikeIcon, AvatarShowIcon, Button} from '@closet-
 import Header from '../src/components/Header';
 import SearchBox from "../src/components/SearchBox";
 import SortingBox from "../src/components/SortingBox";
+import TabBar from "../src/components/TabBar";
 
 const Creator: NextPage = ({ creatorList, followerList }: any) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,7 +23,7 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
       <div className={styles.creatorDiv}>
         <SearchBox/>
         <SortingBox/>
-        <div>tab</div>
+        <TabBar/>
         <div>creatos number</div>
         {creatorList.creators.map((creator: any, index: any) => {
           return (
