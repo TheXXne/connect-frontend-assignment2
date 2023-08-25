@@ -1,4 +1,4 @@
-.creatorDiv {
+.div {
     position: relative;
     width: 100%;
     height: 100%;
@@ -6,11 +6,11 @@
     background-color: #1A1A1F;
 }
 
-.creatorNumDiv {
+.numDiv {
     margin-top: 12px;
 }
 
-.creatorNumText {
+.numText {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -27,4 +27,287 @@
     line-height: 18px;
     font-weight: 300;
     letter-spacing: -0.2px;
+}
+
+.entireDiv {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.outerDiv {
+    padding: 32px 0;
+    margin: 0 -12px;
+    position: relative;
+    border-bottom: 1px solid #2E2E33;
+}
+
+.innerDiv {
+    display: flex;
+    -webkit-box-flex-wrap: wrap;
+    flex-wrap: wrap;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.infoOuterDiv {
+    width: 41.66666666666667%;
+    padding-right: 8px;
+}
+
+.infoInnerDiv {
+    height: 100%;
+    margin-bottom: 0;
+    margin-left: 0;
+    position: relative;
+}
+
+.photoDiv {
+    left: 24px;
+    position: absolute;
+    top: 33%;
+}
+
+.photo {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    display: inline-flex;
+    overflow: hidden;
+}
+
+.infoRSideOuter {
+    height: 100%;
+    margin-left: 54px;
+}
+
+.infoRSideInner {
+    min-height: fit-content;
+    max-height: initial;
+    height: 234px;
+    min-width: 400px;
+    width: 400px;
+    padding: 0 40px 0 50px;
+    margin-right: 8px;
+    background: #2E2E33;
+    border-radius: 10px;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.nameSpan {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    border: 0px;
+    font-style: normal;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'AvenirNextLTPro',sans-serif;
+    text-transform: none;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    letter-spacing: normal;
+}
+
+.nameText {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #FFFFFF;
+    overflow: hidden;
+}
+
+.ocuSpan {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+.occText {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    font-style: normal;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: rgb(150, 150, 159);
+    font-family: 'AvenirNextLTPro',sans-serif;
+    text-transform: none;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+}
+
+.countryDiv {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(150, 150, 159);
+}
+
+.locationIcon {
+    margin-right: 6px;
+}
+
+.countryText {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    font-style: normal;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: rgb(150, 150, 159);
+    font-family: 'AvenirNextLTPro',sans-serif;
+    text-transform: none;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+}
+
+.introductionDiv {
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 10px;
+    color: rgb(150, 150, 159);
+}
+
+.introductionSpan {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    font-style: normal;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: rgb(150, 150, 159);
+    font-family: 'AvenirNextLTPro',sans-serif;
+    text-transform: none;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+}
+
+.introductionText {
+    display: inline;
+}
+
+.connectionDiv {
+    margin-top: 24px;
+    display: flex;
+}
+
+.followBtn {
+    margin: 0px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    background: none rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 20px;
+    transition: all 0.2s ease 0s;
+    font-family: inherit;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 2px 8px 0px;
+    min-height: 24px;
+    min-width: 72px;
+    color: rgb(255, 255, 255);
+    width: 118px;
+}
+
+.splitDiv {
+    width: 1px;
+    height: 24px;
+    margin: 0px 16px;
+    background-color: rgb(71, 71, 78);
+}
+
+.countsDiv {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: auto;
+    gap: 14px;
+}
+
+.viewIconDiv, .likeCountDiv, .followerCountDiv {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.viewIcon, .likeIcon, .avatarShowIcon {
+    margin-right: 6px;
+    color: #FFFFFF;
+}
+
+.viewCount, .likeCount {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    border: 0px;
+    font-style: normal;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: 'AvenirNextLTPro',sans-serif;
+    text-transform: none;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: normal;
+}
+
+.followerCountBtn {
+    min-width: 0px;
+    min-height: 0px;
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+}
+
+.followerCount {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    border: 0px;
+    font-style: normal;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: 'AvenirNextLTPro',sans-serif;
+    text-transform: none;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: normal;
 }
