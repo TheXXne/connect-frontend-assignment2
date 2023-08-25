@@ -24,7 +24,9 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
         <SearchBox/>
         <SortingBox/>
         <TabBar/>
-        <div>creatos number</div>
+        <div className={styles.creatorNumDiv}>
+          <span className={styles.creatorNumText}>{creatorList.creators.length} creators</span>
+        </div>
         {creatorList.creators.map((creator: any, index: any) => {
           return (
               <div>

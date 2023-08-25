@@ -1,4 +1,30 @@
 .creatorDiv {
+    position: relative;
+    width: 100%;
+    height: 100%;
     padding: 40px;
     background-color: #1A1A1F;
+}
+
+.creatorNumDiv {
+    margin-top: 12px;
+}
+
+.creatorNumText {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    color: inherit;
+    font-family: inherit;
+    font-style: normal;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: 'AvenirNextLTPro',sans-serif;
+    text-transform: none;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
 }
