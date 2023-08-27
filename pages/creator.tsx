@@ -5,7 +5,14 @@ import {useState} from "react";
 import ModalBasic from '../src/components/ModalBasic';
 import {NATIONAL_CODE} from '../src/constant/nationalCode';
 import styles from '/styles/Creator.module.css';
-import {LocationIcon, ViewIcon, LikeIcon, AvatarShowIcon, Button} from '@closet-design-system/core-connect';
+import {
+  LocationIcon,
+  ViewIcon,
+  LikeIcon,
+  AvatarShowIcon,
+  Button,
+  ChevronLeftIcon, ChevronRightIcon
+} from '@closet-design-system/core-connect';
 import Header from '../src/components/Header';
 import SearchBox from "../src/components/SearchBox";
 import SortingBox from "../src/components/SortingBox";
@@ -89,16 +96,39 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
                       </div>
                     </div>
                     {/*아이템란*/}
-                    <div>
-                      <div>
-                        <div>
-                          <button></button>
-                          <button></button>
-                          <div>
-                            <div>
-                              <div>
-                                아이템 개별 카드 하나
-                              </div>
+                    <div className={styles.items}>
+                      <div className={styles.itemsOuter}>
+                        <div className={styles.itemsInner}>
+                          <button className={styles.itemsLIcon}>
+                            <ChevronLeftIcon size={16}/>
+                          </button>
+                          <button className={styles.itemsRIcon}>
+                            <ChevronRightIcon size={16}/>
+                          </button>
+                          <div className={styles.carouselOuter}>
+                            <div className={styles.carouselInner}>
+                              {
+                                creator.items.map((item: any, index: any) => {
+                                  return (
+                                      <div className={styles.itemOuter}>
+                                        <div className={styles.itemInner}>
+                                          <div>
+                                            <a>
+                                              <Image
+                                                  src={item.imagePath}
+                                                  alt="Not Set"
+                                                  width="160"
+                                                  height="234"
+                                                  objectFit="cover"
+                                                  objectPosition="center"
+                                              />
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  )
+                                })
+                              }
                             </div>
                           </div>
                         </div>
@@ -106,26 +136,6 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
                     </div>
                   </div>
                 </div>
-                // <div>
-                //     <div>
-                //       {creator.items.map((item: any, index: any) => {
-                //         return (
-                //             <div key={index}>
-                //               <div>item name: {item.name}</div>
-                //               <Image
-                //                   src={item.imagePath}
-                //                   alt="Not Set"
-                //                   width="143"
-                //                   height="190"
-                //                   objectFit="cover"
-                //                   objectPosition="center"
-                //               />
-                //             </div>
-                //         )
-                //       })}
-                //     </div>
-                //   </div>
-                // </div>
             )
           })}
         </div>
