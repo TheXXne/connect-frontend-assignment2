@@ -311,3 +311,103 @@
     font-weight: 600;
     letter-spacing: normal;
 }
+
+.items {
+    width: 50%;
+}
+
+.itemsOuter {
+    padding-left: 6px;
+    padding-right: 28px
+}
+
+.itemsInner {
+    position: relative;
+}
+
+.itemsLIcon {
+    left: -16px;
+    color: rgba(255, 255, 255, 0.2);
+    cursor: default;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0px;
+    /*color: rgb(255, 255, 255);*/
+    background-color: rgb(32, 32, 37);
+    border: 1px solid rgb(46, 46, 51);
+    border-radius: 50%;
+    transform: translate(0px, -50%);
+    position: absolute;
+    top: 50%;
+    outline: none;
+    padding: 0px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.itemsRIcon {
+    transform: translate(0px, -50%) rotate(180deg);
+    right: -16px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(32, 32, 37);
+    border: 1px solid rgb(46, 46, 51);
+    border-radius: 50%;
+    transform: translate(0px, -50%);
+    position: absolute;
+    top: 50%;
+    outline: none;
+    padding: 0px;
+    cursor: pointer;
+    z-index: 1
+}
+
+.carouselOuter {
+    z-index: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+}
+
+.carouselInner {
+    transition-duration: 0ms;
+    transform: translate3d(0px, 0px, 0px);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.itemOuter {
+    left: 0px;
+    width: 187.714px;
+    margin-right: 24px;
+    flex-shrink: 0;
+    /*width: 100%;*/
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+
+.itemInner{
+    padding-bottom: 0px;
+    width: 160px;
+}
