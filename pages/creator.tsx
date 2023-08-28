@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Image from 'next/image'
 import axios from 'axios';
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import ModalBasic from '../src/components/ModalBasic';
 import {NATIONAL_CODE} from '../src/constant/nationalCode';
 import styles from '/styles/Creator.module.css';
@@ -18,12 +18,24 @@ import SearchBox from "../src/components/SearchBox";
 import SortingBox from "../src/components/SortingBox";
 import TabBar from "../src/components/TabBar";
 
-const Creator: NextPage = ({ creatorList, followerList }: any) => {
-  console.log(creatorList)
-  const [modalOpen, setModalOpen] = useState(false);
-  const showModal = (e: any) => {
-    setModalOpen(true);
-  };
+const Creator: NextPage = ({ creatorList }: any) => {
+
+  const ITEM_NUM = 4;
+  const TOTAL_PAGE = 3;
+  const [ pagination, setPagination ] = useState(0);
+  console.log("pagination :: ",pagination)
+
+  const goToPrev = () => {
+    if (pagination != 0) {
+      setPagination(pagination - 1);
+    }
+  }
+
+  const goToNext = () => {
+    if (pagination != TOTAL_PAGE - 1) {
+      setPagination(pagination + 1);
+    }
+  }
 
   return (
     <div>
@@ -40,6 +52,7 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
             return (
                 <div className={styles.outerDiv}>
                   <div className={styles.innerDiv}>
+                    {/*크리에이터 정보란*/}
                     <div className={styles.infoOuterDiv}>
                       <div className={styles.infoInnerDiv}>
                         <div className={styles.photoDiv}>
@@ -99,20 +112,21 @@ const Creator: NextPage = ({ creatorList, followerList }: any) => {
                     <div className={styles.items}>
                       <div className={styles.itemsOuter}>
                         <div className={styles.itemsInner}>
-                          <button className={styles.itemsLIcon}>
+                          <button type='button' className={styles.itemsLIcon} onClick={goToPrev}>
                             <ChevronLeftIcon size={16}/>
                           </button>
-                          <button className={styles.itemsRIcon}>
+                          <button type='button' className={styles.itemsRIcon} onClick={goToNext}>
                             <ChevronRightIcon size={16}/>
                           </button>
                           <div className={styles.carouselOuter}>
-                            <div className={styles.carouselInner}>
+                            <div className={styles.carouselInner} style={{transform: `translate3d(-${pagination * 160 * ITEM_NUM}px, 0px, 0px)`}}>
                               {
                                 creator.items.map((item: any, index: any) => {
+                                  const key = `${item}-${index}`
                                   return (
                                       <div className={styles.itemOuter}>
                                         <div className={styles.itemInner}>
-                                          <div>
+                                          <div key={key}>
                                             <a>
                                               <Image
                                                   src={item.imagePath}
