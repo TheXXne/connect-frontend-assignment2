@@ -9,7 +9,7 @@ import {
   ViewIcon,
   LikeIcon,
   AvatarShowIcon,
-  ChevronLeftIcon, ChevronRightIcon
+  ChevronLeftIcon, ChevronRightIcon, Modal
 } from '@closet-design-system/core-connect';
 import Header from '../src/components/Header';
 import SearchBox from "../src/components/SearchBox";
