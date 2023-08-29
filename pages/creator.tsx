@@ -1,8 +1,7 @@
 import type { NextPage } from 'next';
 import Image from 'next/image'
 import axios from 'axios';
-import {useEffect, useRef, useState} from "react";
-import ModalBasic from '../src/components/ModalBasic';
+import {useState} from "react";
 import {NATIONAL_CODE} from '../src/constant/nationalCode';
 import styles from '/styles/Creator.module.css';
 import {
@@ -10,7 +9,6 @@ import {
   ViewIcon,
   LikeIcon,
   AvatarShowIcon,
-  Button,
   ChevronLeftIcon, ChevronRightIcon
 } from '@closet-design-system/core-connect';
 import Header from '../src/components/Header';
@@ -19,30 +17,25 @@ import SortingBox from "../src/components/SortingBox";
 import TabBar from "../src/components/TabBar";
 
 const Creator: NextPage = ({ creatorList }: any) => {
-
-  const ITEM_NUM = 8; // <= creatorList.creator.items.length
   const ITEM_NUM_TO_SHOW = 3;
-  const TOTAL_PAGE = Math.ceil(ITEM_NUM/ITEM_NUM_TO_SHOW);
-  const REMAINS = ITEM_NUM % ITEM_NUM_TO_SHOW;
   const [ pagination, setPagination ] = useState(1);
-  const [ translate3dX, setTranslate3dX ] = useState(0);
 
-  const goToPrev = () => {
-    if (pagination == TOTAL_PAGE) {
-      setTranslate3dX(((pagination - 2) * 658));
-      setPagination(pagination - 1);
-    } else if (pagination != 1) {
-      setTranslate3dX((pagination - 2) * 658);
+  const goToPrev = (id: string, itemNum: number) => {
+    const totalPage = Math.ceil(itemNum/ITEM_NUM_TO_SHOW);
+    if (pagination == totalPage || pagination != 1) {
+      document.getElementById(id).style.setProperty('transform', `translate3d(-${((pagination - 2) * 658)}px, 0px, 0px)`);
       setPagination(pagination - 1);
     }
   }
 
-  const goToNext = () => {
-    if (pagination < TOTAL_PAGE - 1) {
-      setTranslate3dX((pagination) * 658);
+  const goToNext = (id: string, itemNum: number) => {
+    const totalPage = Math.ceil(itemNum/ITEM_NUM_TO_SHOW);
+    const remains = itemNum % ITEM_NUM_TO_SHOW;
+    if (pagination < totalPage - 1) {
+      document.getElementById(id).style.setProperty('transform', `translate3d(-${(pagination) * 658}px, 0px, 0px)`);
       setPagination(pagination + 1);
-    } else if (pagination != TOTAL_PAGE) {
-      setTranslate3dX(((pagination - 1) * 658) + 139 + (208 * (REMAINS - 1)));
+    } else if (pagination != totalPage) {
+      document.getElementById(id).style.setProperty('transform', `translate3d(-${((pagination - 1) * 658) + 139 + (208 * (remains - 1))}px, 0px, 0px)`);
       setPagination(pagination + 1);
     }
   }
@@ -66,7 +59,10 @@ const Creator: NextPage = ({ creatorList }: any) => {
           <span className={styles.numText}>{creatorList.creators.length} creators</span>
         </div>
         <div className={styles.entireDiv}>
-          {creatorList.creators.map((creator: any, index: any) => {
+          {
+            creatorList.creators.map((creator: any, index: any) => {
+            const id: string = `${creator.creator}-${index}`;
+            const itemNum: number = creator.items.length;
             return (
                 <div className={styles.outerDiv}>
                   <div className={styles.innerDiv}>
@@ -130,14 +126,14 @@ const Creator: NextPage = ({ creatorList }: any) => {
                     <div className={styles.items}>
                       <div className={styles.itemsOuter}>
                         <div className={styles.itemsInner}>
-                          <button type='button' className={styles.itemsLIcon} onClick={goToPrev}>
+                          <button type='button' className={styles.itemsLIcon} onClick={() => goToPrev(id, itemNum)}>
                             <ChevronLeftIcon size={16}/>
                           </button>
-                          <button type='button' className={styles.itemsRIcon} onClick={goToNext}>
+                          <button type='button' className={styles.itemsRIcon} onClick={() => goToNext(id, itemNum)}>
                             <ChevronRightIcon size={16}/>
                           </button>
                           <div className={styles.carouselOuter}>
-                            <div className={styles.carouselInner} style={{transform: `translate3d(-${translate3dX}px, 0px, 0px)`}}>
+                            <div className={styles.carouselInner} id={id} style={{transform: `translate3d(0px, 0px, 0px)`}}>
                               {
                                 creator.items.map((item: any, index: any) => {
                                   const key = `${item}-${index}`
@@ -176,16 +172,11 @@ const Creator: NextPage = ({ creatorList }: any) => {
   );
 };
 
-export async function getServerSideProps(context: any) {
-  const { userId } = context.query;
+export async function getServerSideProps() {
   const creatorResponse = await axios.post('http://localhost:3000/api/creator');
-  // const followerResponse = await axios.get('http://localhost:3000/api/follower',
-  //     { params: { userId: 354 }}
-  // );
   const creatorList = creatorResponse.data.creatorList;
-  // const followerList = followerResponse.data.followerList;
 
-  creatorList.creators.map((creator: any, index: any) => {
+  creatorList.creators.map((creator: any) => {
     if (creator.introduction.ops?.length) {
       creator.introduction = creator.introduction.ops[0].insert;
     } else {
@@ -193,7 +184,7 @@ export async function getServerSideProps(context: any) {
     }
   });
 
-  creatorList.creators.map((creator: any, index: any) => {
+  creatorList.creators.map((creator: any) => {
     NATIONAL_CODE.map((nation: any, index: any) => {
       if (creator.country === nation.value) {
         creator.country = nation.label;
@@ -201,13 +192,13 @@ export async function getServerSideProps(context: any) {
     });
   });
 
-  creatorList.creators.map((creator: any, index: any) => {
+  creatorList.creators.map((creator: any) => {
     let occupationStr = '';
     if (creator.occupations.length) {
-      creator.occupations.map((occu: any, index: any) => {
-        occupationStr += occu.name + ",";
+      creator.occupations.map((occupation: any) => {
+        occupationStr += occupation.name + ",";
       })
-      creator.occupations = occupationStr.substring(0, occupationStr.length-1);
+      creator.occupations = occupationStr.substring(0, occupationStr.length - 1);
     }
   });
 
