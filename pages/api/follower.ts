@@ -4,7 +4,6 @@ import axios from 'axios';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
-    console.log("FOLLWER API !!!!")
     const { userId }: any = req.query;
     const response = await axios.get(
       `https://test-connect.api.clo-set.com/api/Social/${userId}/Followers`,

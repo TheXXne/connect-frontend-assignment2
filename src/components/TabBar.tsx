@@ -1,5 +1,5 @@
 import styles from 'styles/TabBar.module.css';
-import {ArrowTriangleDownIcon, InfoIcon, Select} from "@closet-design-system/core-connect";
+import {InfoIcon, Select} from "@closet-design-system/core-connect";
 
 export default function SortingBox() {
     return (

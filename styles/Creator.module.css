@@ -52,7 +52,7 @@
 }
 
 .infoOuterDiv {
-    width: 41.66666666666667%;
+    width: 50%;
     padding-right: 8px;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .photoDiv {
-    left: 24px;
+    left: 14px;
     position: absolute;
     top: 33%;
 }
@@ -86,8 +86,8 @@
     min-height: fit-content;
     max-height: initial;
     height: 234px;
-    min-width: 400px;
-    width: 400px;
+    min-width: 602px;
+    width: 602px;
     padding: 0 40px 0 50px;
     margin-right: 8px;
     background: #2E2E33;
