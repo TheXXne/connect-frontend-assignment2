@@ -20,21 +20,39 @@ import TabBar from "../src/components/TabBar";
 
 const Creator: NextPage = ({ creatorList }: any) => {
 
-  const ITEM_NUM = 4;
-  const TOTAL_PAGE = 3;
-  const [ pagination, setPagination ] = useState(0);
-  console.log("pagination :: ",pagination)
+  const ITEM_NUM = 8; // <= creatorList.creator.items.length
+  const ITEM_NUM_TO_SHOW = 3;
+  const TOTAL_PAGE = Math.ceil(ITEM_NUM/ITEM_NUM_TO_SHOW);
+  const REMAINS = ITEM_NUM % ITEM_NUM_TO_SHOW;
+  const [ pagination, setPagination ] = useState(1);
+  const [ translate3dX, setTranslate3dX ] = useState(0);
 
   const goToPrev = () => {
-    if (pagination != 0) {
+    if (pagination == TOTAL_PAGE) {
+      setTranslate3dX(((pagination - 2) * 658));
+      setPagination(pagination - 1);
+    } else if (pagination != 1) {
+      setTranslate3dX((pagination - 2) * 658);
       setPagination(pagination - 1);
     }
   }
 
   const goToNext = () => {
-    if (pagination != TOTAL_PAGE - 1) {
+    if (pagination < TOTAL_PAGE - 1) {
+      setTranslate3dX((pagination) * 658);
+      setPagination(pagination + 1);
+    } else if (pagination != TOTAL_PAGE) {
+      setTranslate3dX(((pagination - 1) * 658) + 139 + (208 * (REMAINS - 1)));
       setPagination(pagination + 1);
     }
+  }
+
+  const showFollower = async (userId: number) => {
+    const followerResponse = await axios.get('http://localhost:3000/api/follower',
+        { params: { userId: userId }}
+    );
+    const followerList = followerResponse.data.followerList;
+    console.log("followerList :: ", followerList);
   }
 
   return (
@@ -98,7 +116,7 @@ const Creator: NextPage = ({ creatorList }: any) => {
                                 </div>
                                 <div className={styles.followerCountDiv}>
                                   <div className={styles.avatarShowIcon}><AvatarShowIcon size={'16px'}/></div>
-                                  <button className={styles.followerCountBtn}>
+                                  <button className={styles.followerCountBtn} onClick={() => showFollower(creator.userId)}>
                                     <span className={styles.followerCount}>{creator.followerCount}</span>
                                   </button>
                                 </div>
@@ -119,7 +137,7 @@ const Creator: NextPage = ({ creatorList }: any) => {
                             <ChevronRightIcon size={16}/>
                           </button>
                           <div className={styles.carouselOuter}>
-                            <div className={styles.carouselInner} style={{transform: `translate3d(-${pagination * 160 * ITEM_NUM}px, 0px, 0px)`}}>
+                            <div className={styles.carouselInner} style={{transform: `translate3d(-${translate3dX}px, 0px, 0px)`}}>
                               {
                                 creator.items.map((item: any, index: any) => {
                                   const key = `${item}-${index}`
@@ -161,11 +179,11 @@ const Creator: NextPage = ({ creatorList }: any) => {
 export async function getServerSideProps(context: any) {
   const { userId } = context.query;
   const creatorResponse = await axios.post('http://localhost:3000/api/creator');
-  const followerResponse = await axios.get('http://localhost:3000/api/follower',
-      { params: { userId: 354 }}
-  );
+  // const followerResponse = await axios.get('http://localhost:3000/api/follower',
+  //     { params: { userId: 354 }}
+  // );
   const creatorList = creatorResponse.data.creatorList;
-  const followerList = followerResponse.data.followerList;
+  // const followerList = followerResponse.data.followerList;
 
   creatorList.creators.map((creator: any, index: any) => {
     if (creator.introduction.ops?.length) {
@@ -196,7 +214,6 @@ export async function getServerSideProps(context: any) {
   return {
     props: {
       creatorList: creatorList,
-      followerList: followerList,
     },
   };
 }
