@@ -1,5 +1,5 @@
 import styles from 'styles/SortingBox.module.css';
-import {ArrowTriangleDownIcon} from "@closet-design-system/core-connect";
+import { ArrowTriangleDownIcon } from '@closet-design-system/core-connect';
 
 export default function SortingBox() {
     return (

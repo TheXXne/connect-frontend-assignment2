@@ -34,6 +34,7 @@
     "@babel/core": "^7.22.10",
     "@babel/preset-env": "^7.22.10",
     "@emotion/babel-plugin": "^11.11.0",
+    "@types/facepaint": "^1.2.2",
     "@types/node": "^20.5.1",
     "@types/react": "^18.2.20",
     "eslint": "8.47.0",
