@@ -1,22 +1,27 @@
 import type { NextPage } from 'next';
 import Image from 'next/image'
 import axios from 'axios';
-import {useState} from "react";
-import {NATIONAL_CODE} from '../src/constant/nationalCode';
+import { useState } from 'react';
+import { NATIONAL_CODE } from '../src/constant/nationalCode';
 import styles from '/styles/Creator.module.css';
 import {
   LocationIcon,
   ViewIcon,
   LikeIcon,
   AvatarShowIcon,
-  ChevronLeftIcon, ChevronRightIcon, Modal
+  ChevronLeftIcon, ChevronRightIcon
 } from '@closet-design-system/core-connect';
 import Header from '../src/components/Header';
-import SearchBox from "../src/components/SearchBox";
-import SortingBox from "../src/components/SortingBox";
-import TabBar from "../src/components/TabBar";
+import SearchBox from '../src/components/SearchBox';
+import SortingBox from '../src/components/SortingBox';
+import TabBar from '../src/components/TabBar';
+import { css } from '@emotion/react';
+import facepaint from 'facepaint';
 
 const Creator: NextPage = ({ creatorList }: any) => {
+  const breakpoints = [ 1200, 1440 ];
+  const mq = facepaint(breakpoints.map(bp => `@media (min-width: ${bp}px)`));
+
   const ITEM_NUM_TO_SHOW = 3;
   const [ pagination, setPagination ] = useState(1);
 
@@ -67,7 +72,9 @@ const Creator: NextPage = ({ creatorList }: any) => {
                 <div className={styles.outerDiv}>
                   <div className={styles.innerDiv}>
                     {/*크리에이터 정보란*/}
-                    <div className={styles.infoOuterDiv}>
+                    <div className={styles.infoOuterDiv} css={mq({
+                      width: ['41.66666666666667%', '50%']
+                    })}>
                       <div className={styles.infoInnerDiv}>
                         <div className={styles.photoDiv}>
                           <a className={styles.photo} style={{borderRadius: '50%', overflow: 'hidden'}}>
@@ -133,7 +140,9 @@ const Creator: NextPage = ({ creatorList }: any) => {
                             <ChevronRightIcon size={16}/>
                           </button>
                           <div className={styles.carouselOuter}>
-                            <div className={styles.carouselInner} id={id} style={{transform: `translate3d(0px, 0px, 0px)`}}>
+                            <div className={styles.carouselInner} id={id} css={css({
+                              transform: "translate3d(0px,0px,0px)"
+                            })}>
                               {
                                 creator.items.map((item: any, index: any) => {
                                   const key = `${item}-${index}`
@@ -185,7 +194,7 @@ export async function getServerSideProps() {
   });
 
   creatorList.creators.map((creator: any) => {
-    NATIONAL_CODE.map((nation: any, index: any) => {
+    NATIONAL_CODE.map((nation: any) => {
       if (creator.country === nation.value) {
         creator.country = nation.label;
       }
